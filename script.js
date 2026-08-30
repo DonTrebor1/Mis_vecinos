@@ -48,7 +48,8 @@ const translations = {
         januaryDate: "Date: January 15, 2024",
         februaryMeeting: "Meeting Minutes - February 2024",
         februaryDate: "Date: February 10, 2024",
-        downloadMinutes: "Download Minutes"
+        downloadMinutes: "Download Minutes",
+        storageError: "Couldn't save the incident: local storage is full. Try attaching a smaller image or removing old resolved incidents."
     },
     es: {
         appTitle: "MIS VECINOS",
@@ -84,7 +85,7 @@ const translations = {
         myIncidents: "Mis Incidencias",
         myIncidentsDescription: "Aquí puedes ver las incidencias que has reportado. Cada incidencia incluye una descripción, una imagen (si la adjuntaste), y su estado actual: Pendiente, Vista o Resuelta.",
         resolvedIncidents: "Historial de Incidencias Resueltas",
-        resolvedIncidencesDescription: "Esta sección muestra un historial de todas las incidencias que han sido resueltas, para que puedas revisarlas en cualquier momento.",
+        resolvedIncidentsDescription: "Esta sección muestra un historial de todas las incidencias que han sido resueltas, para que puedas revisarlas en cualquier momento.",
         instructions: "¿Tienes un problema en tu comunidad? Sigue estos pasos para reportarlo:",
         step1: "Escribe una breve descripción de lo que ocurre.",
         step2: "Si tienes una foto del problema, puedes adjuntarla (opcional).",
@@ -98,7 +99,8 @@ const translations = {
         januaryDate: "Fecha: 15 de enero, 2024",
         februaryMeeting: "Acta de la reunión - Febrero 2024",
         februaryDate: "Fecha: 10 de febrero, 2024",
-        downloadMinutes: "Descargar Acta"
+        downloadMinutes: "Descargar Acta",
+        storageError: "No se ha podido guardar la incidencia: el almacenamiento local está lleno. Prueba a adjuntar una imagen más pequeña o a eliminar incidencias resueltas antiguas."
     }
 };
 
@@ -198,6 +200,24 @@ function applyLanguage(language) {
     displayIncidents(); // Llamo de nuevo a displayIncidents para aplicar el idioma en los botones dinámicos
 }
 
+// Escapar HTML para evitar que una descripción con <script> u otras etiquetas se ejecute al listarla
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text ?? '';
+    return div.innerHTML;
+}
+
+// Guardar en localStorage con control de cuota llena (p. ej. muchas imágenes en Base64)
+function saveToStorage(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+    } catch (e) {
+        alert(translations[localStorage.getItem('language') || 'es'].storageError);
+        return false;
+    }
+}
+
 // Convertir imagen a Base64
 async function convertImageToBase64(imageFile) {
     return new Promise((resolve, reject) => {
@@ -227,7 +247,10 @@ document.getElementById('complaintForm')?.addEventListener('submit', async funct
     };
 
     incidents.push(incident);
-    localStorage.setItem('incidents', JSON.stringify(incidents));
+    if (!saveToStorage('incidents', incidents)) {
+        incidents.pop(); // no se pudo guardar: no dejar la incidencia solo en memoria
+        return;
+    }
     displayIncidents();
 
     document.getElementById('complaintForm').reset();
@@ -244,7 +267,7 @@ function displayIncidents() {
         const incidentDiv = document.createElement('div');
         incidentDiv.classList.add('incident', 'border', 'p-2', 'mb-2');
         incidentDiv.innerHTML = `
-            <p><strong data-translate="incidentDescription">Descripción:</strong> ${incident.description}</p>
+            <p><strong data-translate="incidentDescription">Descripción:</strong> ${escapeHtml(incident.description)}</p>
             ${incident.image ? `<img src="${incident.image}" alt="Incidencia" style="max-width: 200px;">` : ''}
             <p><strong data-translate="status">Estado:</strong> ${incident.status}</p>
             <button class="btn btn-warning" onclick="updateStatus(${index}, 'Vista')" data-translate="markAsViewed">${translations[localStorage.getItem('language') || 'es'].markAsViewed}</button>
@@ -259,7 +282,7 @@ function displayIncidents() {
         const resolvedDiv = document.createElement('div');
         resolvedDiv.classList.add('incident', 'border', 'p-2', 'mb-2');
         resolvedDiv.innerHTML = `
-            <p><strong data-translate="incidentDescription">Descripción:</strong> ${incident.description}</p>
+            <p><strong data-translate="incidentDescription">Descripción:</strong> ${escapeHtml(incident.description)}</p>
             ${incident.image ? `<img src="${incident.image}" alt="Incidencia Resuelta" style="max-width: 200px;">` : ''}
             <p><strong data-translate="status">Estado:</strong> ${incident.status}</p>
             <button class="btn btn-danger" onclick="confirmDeleteResolved(${index})" data-translate="delete">${translations[localStorage.getItem('language') || 'es'].delete}</button>
@@ -298,23 +321,23 @@ function updateStatus(index, status) {
     if (status === 'Resuelta') {
         resolvedIncidents.push(incidents[index]);
         incidents.splice(index, 1);
-        localStorage.setItem('resolvedIncidents', JSON.stringify(resolvedIncidents));
+        saveToStorage('resolvedIncidents', resolvedIncidents);
     }
-    localStorage.setItem('incidents', JSON.stringify(incidents));
+    saveToStorage('incidents', incidents);
     displayIncidents();
 }
 
 // Eliminar incidencia
 function deleteIncident(index) {
     incidents.splice(index, 1);
-    localStorage.setItem('incidents', JSON.stringify(incidents));
+    saveToStorage('incidents', incidents);
     displayIncidents();
 }
 
 // Eliminar incidencia en el historial
 function deleteResolvedIncident(index) {
     resolvedIncidents.splice(index, 1);
-    localStorage.setItem('resolvedIncidents', JSON.stringify(resolvedIncidents));
+    saveToStorage('resolvedIncidents', resolvedIncidents);
     displayIncidents();
 }
 
