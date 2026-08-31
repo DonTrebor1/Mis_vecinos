@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis Vecinos — Incidencias</title>
-<meta name="description" content="Reporta y sigue el estado de las incidencias del edificio.">
+<title>Mis Vecinos — Documentos</title>
+<meta name="description" content="Actas, normativa, seguros y presupuestos de la comunidad.">
 <meta name="theme-color" content="#1e2732">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<meta property="og:title" content="Mis Vecinos — Incidencias">
-<meta property="og:description" content="Reporta y sigue el estado de las incidencias del edificio.">
+<meta property="og:title" content="Mis Vecinos — Documentos">
+<meta property="og:description" content="Actas, normativa, seguros y presupuestos de la comunidad.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="icons/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>
         <span data-i18n="navHome">Inicio</span>
       </a>
-      <a class="nav-item active" href="incidencias.html">
+      <a class="nav-item" href="incidencias.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.8 2.8-2-2z"/></svg>
         <span data-i18n="navIncidents">Incidencias</span><span class="nav-badge" id="navIncidentsBadge" hidden></span>
       </a>
@@ -44,7 +44,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 8.5a4 4 0 0 1 0 7M19 6a7.5 7.5 0 0 1 0 12"/></svg>
         <span data-i18n="navCommunity">Comunidad</span>
       </a>
-      <a class="nav-item" href="documentos.html">
+      <a class="nav-item active" href="documentos.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5M9.5 8.5h2"/></svg>
         <span data-i18n="navDocuments">Documentos</span>
       </a>
@@ -68,80 +68,29 @@
 
   <main class="content">
 <div class="view-head">
-        <p class="eyebrow" data-i18n="incEyebrow">Mantenimiento</p>
-        <h1 data-i18n="reportIncident">Incidencias</h1>
-        <p data-i18n="incInstructions">Describe el problema, adjunta fotos si puedes, y el administrador lo verá aquí mismo.</p>
+        <p class="eyebrow" data-i18n="docsEyebrow">Archivo</p>
+        <h1 data-i18n="docsTitle">Documentos</h1>
+        <p data-i18n="docsSubtitle">Actas, normativa, seguros y presupuestos de la comunidad.</p>
+      </div>
+      <div class="filters-bar">
+        <input type="text" id="docSearch" data-i18n-placeholder="searchDocsPlaceholder" placeholder="Buscar documentos...">
       </div>
 
-      <div class="incidents-grid">
-        <div class="card pad">
-          <h3 style="margin-bottom:14px;font-size:1rem;" data-i18n="newIncidentTitle">Nueva incidencia</h3>
-          <form id="complaintForm">
-            <div class="form-group">
-              <label for="description" data-i18n="descriptionLabel">Descripción</label>
-              <textarea id="description" data-i18n-placeholder="placeholderDescription" placeholder="Describe tu problema..." required></textarea>
-            </div>
-            <div class="field-row">
-              <div class="form-group">
-                <label for="incCategory" data-i18n="categoryLabel">Categoría</label>
-                <select id="incCategory">
-                  <option value="plumbing" data-i18n="catPlumbing">Fontanería</option>
-                  <option value="electric" data-i18n="catElectric">Electricidad</option>
-                  <option value="elevator" data-i18n="catElevator">Ascensor</option>
-                  <option value="cleaning" data-i18n="catCleaning">Limpieza</option>
-                  <option value="common" data-i18n="catCommon">Zonas comunes</option>
-                  <option value="other" selected data-i18n="catOther">Otros</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="incPriority" data-i18n="priorityLabel">Prioridad</label>
-                <select id="incPriority">
-                  <option value="low" selected data-i18n="prioLow">Baja</option>
-                  <option value="medium" data-i18n="prioMedium">Media</option>
-                  <option value="urgent" data-i18n="prioUrgent">Urgente</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="incUnit" data-i18n="unitLabel">Tu vivienda (opcional)</label>
-              <input type="text" id="incUnit" data-i18n-placeholder="unitPlaceholder" placeholder="p. ej. 3ºB">
-            </div>
-            <div class="form-group">
-              <label data-i18n="attachImage">Fotos (opcional)</label>
-              <label class="file-drop" id="fileDrop">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-                <span id="fileLabel" data-i18n="noFileSelected">Ningún archivo seleccionado</span>
-                <input type="file" id="imageUpload" accept="image/*" multiple>
-              </label>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block" data-i18n="submitIncident">Enviar incidencia</button>
-          </form>
-        </div>
-
-        <div>
-          <div class="tabs">
-            <button class="tab-btn active" data-tab="open" data-i18n="tabOpen">Abiertas</button>
-            <button class="tab-btn" data-tab="resolved" data-i18n="tabResolved">Resueltas</button>
-          </div>
-          <div class="filters-bar">
-            <input type="text" id="filterQ" data-i18n-placeholder="searchPlaceholder" placeholder="Buscar incidencias...">
-            <select id="filterCategory"><option value="all" data-i18n="filterCategoryAll">Todas las categorías</option>
-              <option value="plumbing" data-i18n="catPlumbing">Fontanería</option>
-              <option value="electric" data-i18n="catElectric">Electricidad</option>
-              <option value="elevator" data-i18n="catElevator">Ascensor</option>
-              <option value="cleaning" data-i18n="catCleaning">Limpieza</option>
-              <option value="common" data-i18n="catCommon">Zonas comunes</option>
-              <option value="other" data-i18n="catOther">Otros</option>
-            </select>
-            <select id="filterPriority"><option value="all" data-i18n="filterPriorityAll">Todas las prioridades</option>
-              <option value="low" data-i18n="prioLow">Baja</option>
-              <option value="medium" data-i18n="prioMedium">Media</option>
-              <option value="urgent" data-i18n="prioUrgent">Urgente</option>
-            </select>
-          </div>
-          <div id="incidentsList"></div>
-          <div id="resolvedList" hidden></div>
-        </div>
+      <div class="doc-category">
+        <h3 data-i18n="docCategoryActas">Actas de reuniones</h3>
+        <div class="actas-grid" id="docsActas"></div>
+      </div>
+      <div class="doc-category">
+        <h3 data-i18n="docCategoryNormativa">Normativa</h3>
+        <div class="card empty" id="docsNormativa"><p data-i18n="docCategoryEmpty">Todavía no hay documentos en esta categoría.</p></div>
+      </div>
+      <div class="doc-category">
+        <h3 data-i18n="docCategorySeguros">Seguros</h3>
+        <div class="card empty" id="docsSeguros"><p data-i18n="docCategoryEmpty">Todavía no hay documentos en esta categoría.</p></div>
+      </div>
+      <div class="doc-category">
+        <h3 data-i18n="docCategoryPresupuestos">Presupuestos</h3>
+        <div class="card empty" id="docsPresupuestos"><p data-i18n="docCategoryEmpty">Todavía no hay documentos en esta categoría.</p></div>
       </div>
   </main>
 </div>

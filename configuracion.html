@@ -1,90 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="configTitle">Mis Vecinos - Configuración</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Vecinos — Configuración</title>
+<meta name="description" content="Idioma, modo oscuro, contraste y copia de seguridad de tus datos.">
+<meta name="theme-color" content="#1e2732">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta property="og:title" content="Mis Vecinos — Configuración">
+<meta property="og:description" content="Idioma, modo oscuro, contraste y copia de seguridad de tus datos.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="icons/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="main-container">
-        <!-- Menú lateral, el mismo de todas las páginas -->
-        <nav id="sidebar" class="active">
-            <div class="toggle-btn" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul>
-                <li><a href="index.html" onclick="toggleMenu()"><i class="fas fa-home"></i> <span data-translate="home">Inicio</span></a></li>
-                <li><a href="incidencias.html" onclick="toggleMenu()"><i class="fas fa-tools"></i> <span data-translate="incidents">Incidencias</span></a></li>
-                <li><a href="actas.html" onclick="toggleMenu()"><i class="fas fa-file-alt"></i> <span data-translate="communityMinutes">Actas de la Comunidad</span></a></li>
-                <li><a href="configuracion.html" onclick="toggleMenu()"><i class="fas fa-cog"></i> <span data-translate="settings">Configuración</span></a></li>
-            </ul>
-        </nav>
+<div class="app-shell">
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+  </button>
+  <div class="backdrop" id="backdrop"></div>
 
-        <!-- Contenido de la configuración y explicaciones de cada opción -->
-        <div id="content" class="p-4">
-            <h2 class="config-title mb-4" data-translate="configTitle">Configuración</h2>
-            <p class="mb-5" data-translate="configDesc">Personaliza la apariencia de la aplicación según tus preferencias.</p>
-
-            <div class="settings-list">
-                <!-- Modo Oscuro/Claro -->
-                <div class="setting-item mb-4">
-                    <h4 data-translate="darkMode">Modo Oscuro</h4>
-                    <p class="setting-description mb-2" data-translate="darkModeDesc">
-                        Activa el modo oscuro para reducir el brillo de la pantalla y facilitar la lectura en entornos con poca luz.
-                    </p>
-                    <label class="switch">
-                        <input type="checkbox" id="darkModeToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-
-                <!-- Tamaño del Texto -->
-                <div class="setting-item mb-4">
-                    <h4 data-translate="textSize">Tamaño del Texto</h4>
-                    <p class="setting-description mb-2" data-translate="textSizeDesc">
-                        Ajusta el tamaño del texto para mejorar la visibilidad y la comodidad de lectura.
-                    </p>
-                    <div class="text-size-controls d-flex gap-2">
-                        <button class="btn btn-secondary" onclick="adjustTextSize('small')" data-translate="small">A-</button>
-                        <button class="btn btn-secondary" onclick="adjustTextSize('medium')" data-translate="medium">A</button>
-                        <button class="btn btn-secondary" onclick="adjustTextSize('large')" data-translate="large">A+</button>
-                        <button class="btn btn-secondary" onclick="adjustTextSize('x-large')" data-translate="xlarge">A++</button>
-                        <button class="btn btn-secondary" onclick="adjustTextSize('xx-large')" data-translate="xxlarge">A+++</button>
-                    </div>
-                </div>
-
-                <!-- Contraste Mejorado -->
-                <div class="setting-item mb-4">
-                    <h4 data-translate="contrastMode">Contraste Mejorado</h4>
-                    <p class="setting-description mb-2" data-translate="contrastModeDesc">
-                        Activa el contraste mejorado para hacer más visibles los elementos en pantalla y facilitar la lectura.
-                    </p>
-                    <label class="switch">
-                        <input type="checkbox" id="contrastToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-
-                <!-- Selección de Idioma -->
-                <div class="setting-item mb-4">
-                    <h4 data-translate="language">Idioma</h4>
-                    <p class="setting-description mb-2" data-translate="languageDesc">
-                        Selecciona el idioma en el que prefieres visualizar la aplicación.
-                    </p>
-                    <select id="languageSelect" class="form-control language-select">
-                        <option value="es" data-translate="spanish">Español</option>
-                        <option value="en" data-translate="english">Inglés</option>
-                    </select>
-                </div>
-
-                <!-- Botón para guardar las preferencias -->
-                <button class="btn btn-primary mt-3" onclick="savePreferences()" data-translate="savePreferences">Guardar Preferencias</button>
-            </div>
-        </div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9.5L12 4l8 5.5V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 13h.01M15 13h.01M9 9.5h.01M15 9.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span class="brand-name">Mis Vecinos</span>
     </div>
-    <script src="script.js"></script>
+    <nav class="nav" id="navList">
+      <a class="nav-item" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>
+        <span data-i18n="navHome">Inicio</span>
+      </a>
+      <a class="nav-item" href="incidencias.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.8 2.8-2-2z"/></svg>
+        <span data-i18n="navIncidents">Incidencias</span><span class="nav-badge" id="navIncidentsBadge" hidden></span>
+      </a>
+      <a class="nav-item" href="comunidad.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 8.5a4 4 0 0 1 0 7M19 6a7.5 7.5 0 0 1 0 12"/></svg>
+        <span data-i18n="navCommunity">Comunidad</span>
+      </a>
+      <a class="nav-item" href="documentos.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5M9.5 8.5h2"/></svg>
+        <span data-i18n="navDocuments">Documentos</span>
+      </a>
+      <a class="nav-item active" href="configuracion.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V19.6a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H4.4a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10.5a1.7 1.7 0 0 0 1-1.55V4.4a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10.5a1.7 1.7 0 0 0 1.55 1H19.6a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1z"/></svg>
+        <span data-i18n="navSettings">Configuración</span>
+      </a>
+    </nav>
+    <div class="sidebar-unit" id="sidebarUnit"></div>
+    <div class="sidebar-footer">
+      <button class="theme-quick" id="installAppBtn" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>
+        <span data-i18n="installApp">Instalar app</span>
+      </button>
+      <button class="theme-quick" id="quickTheme">
+        <svg id="quickThemeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <span id="quickThemeLabel" data-i18n="darkMode">Modo oscuro</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="content">
+<div class="view-head">
+        <p class="eyebrow" data-i18n="configEyebrow">Preferencias</p>
+        <h1 data-i18n="configTitle">Configuración</h1>
+        <p data-i18n="configDesc">Personaliza la apariencia de la aplicación a tu gusto.</p>
+      </div>
+
+      <div class="card pad" style="margin-bottom:16px;">
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="unitSettingLabel">Tu vivienda</h4><p data-i18n="unitSettingDesc">Se usará para identificarte de forma anónima al reportar, comentar o votar — nunca se comparte tu nombre.</p></div>
+          <div class="setting-control"><input type="text" id="unitSetting" data-i18n-placeholder="unitPlaceholder" placeholder="p. ej. 3ºB"></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="darkMode">Modo oscuro</h4><p data-i18n="darkModeDesc">Reduce el brillo de la pantalla para leer mejor con poca luz.</p></div>
+          <div class="setting-control"><label class="switch"><input type="checkbox" id="darkModeToggle"><span class="slider"></span></label></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="contrastMode">Contraste alto</h4><p data-i18n="contrastModeDesc">Aumenta el contraste para que los elementos se vean con más claridad.</p></div>
+          <div class="setting-control"><label class="switch"><input type="checkbox" id="contrastToggle"><span class="slider"></span></label></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="textSize">Tamaño del texto</h4><p data-i18n="textSizeDesc">Ajusta el tamaño del texto para leer con más comodidad.</p></div>
+          <div class="setting-control text-size-controls" id="textSizeControls">
+            <button class="size-btn" data-size="0.9">A-</button>
+            <button class="size-btn active" data-size="1">A</button>
+            <button class="size-btn" data-size="1.15">A+</button>
+            <button class="size-btn" data-size="1.3">A++</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="language">Idioma</h4><p data-i18n="languageDesc">Elige el idioma en el que quieres ver la aplicación.</p></div>
+          <div class="setting-control">
+            <select id="languageSelect">
+              <option value="es" data-i18n="spanish">Español</option>
+              <option value="ca" data-i18n="catalan">Català</option>
+              <option value="en" data-i18n="english">English</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pad" style="margin-bottom:16px;">
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="demoDataLabel">Datos de ejemplo</h4><p data-i18n="demoDataDesc">Rellena la app con incidencias, avisos y una votación de ejemplo para probarla.</p></div>
+          <div class="setting-control"><button class="btn btn-outline" id="loadDemoBtn" data-i18n="loadDemoBtn">Cargar datos de ejemplo</button></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="backupLabel">Copia de seguridad</h4><p data-i18n="backupDesc">Todos tus datos viven solo en este navegador. Exporta una copia de vez en cuando por si acaso.</p></div>
+          <div class="setting-control" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-outline" id="exportBtn" data-i18n="exportBtn">Exportar datos</button>
+            <button class="btn btn-outline" id="importBtn" data-i18n="importBtn">Importar datos</button>
+            <input type="file" id="importFile" accept="application/json" hidden>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-copy"><h4 data-i18n="resetDataLabel">Borrar todos los datos</h4><p data-i18n="resetDataDesc">Elimina incidencias, avisos y votaciones guardadas en este navegador. No se puede deshacer.</p></div>
+          <div class="setting-control"><button class="btn btn-danger-ghost" id="resetDataBtn" data-i18n="resetDataBtn">Borrar datos</button></div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="saveBtn" data-i18n="savePreferences">Guardar preferencias</button>
+  </main>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastText"></span>
+</div>
+
+<div class="modal-backdrop" id="backupModal">
+  <div class="modal">
+    <h3 data-i18n="backupModalTitle">Copia de seguridad</h3>
+    <p data-i18n="backupModalDesc" style="font-size:.84rem;color:var(--ink-muted);">Descarga el archivo o copia el texto para guardarlo en otro sitio.</p>
+    <textarea id="backupText" readonly></textarea>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="backupDownloadBtn" data-i18n="backupDownload">Descargar archivo</button>
+      <button class="btn btn-outline" id="backupCopyBtn" data-i18n="backupCopy">Copiar</button>
+      <button class="btn btn-ghost" id="backupCloseBtn" data-i18n="backupClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
