@@ -7,7 +7,7 @@
 
   var translations = {
     es: {
-      navHome: "Inicio", navPanel: "Panel de la comunidad", navIncidents: "Incidencias", navCommunity: "Comunidad", navDocuments: "Documentos", navSettings: "Configuración",
+      navHome: "Inicio", navPanel: "Panel de la comunidad", navIncidents: "Incidencias", navCommunity: "Comunidad", navDocuments: "Documentos", navPhones: "Teléfonos de interés", navSettings: "Configuración",
       homeTitle: "Mis Vecinos", homeSubtitle: "El espacio compartido de tu finca: incidencias, avisos, votaciones y documentos — identificado solo por tu vivienda, nunca por tu nombre.",
       homeTilesTitle: "¿Qué quieres hacer?", homeMostUsedTitle: "Más usado",
       dashEyebrow: "Comunidad", dashTitle: "Panel de la comunidad", dashSubtitle: "Un vistazo rápido a las incidencias y documentos del edificio.",
@@ -43,6 +43,11 @@
       docCategorySeguros: "Seguros", docCategoryPresupuestos: "Presupuestos", docCategoryEmpty: "Todavía no hay documentos en esta categoría.", docNoResults: "Ningún documento coincide con la búsqueda.",
       januaryMeeting: "Reunión — Enero 2024", januaryDate: "15 de enero, 2024",
       februaryMeeting: "Reunión — Febrero 2024", februaryDate: "10 de febrero, 2024", download: "Descargar",
+      phonesEyebrow: "Emergencias", phonesTitle: "Teléfonos de interés", phonesSubtitle: "Números útiles para una emergencia o una avería en el edificio.",
+      phonesEmergencyTitle: "Emergencias", phone112Label: "Emergencias (toda España)", phone091Label: "Policía Nacional", phone062Label: "Guardia Civil", phone061Label: "Emergencias sanitarias",
+      phonesCommunityTitle: "Contactos de la comunidad", phonesCommunityDesc: "Seguro, fontanero de guardia, electricista, cerrajero, administrador... los que tu comunidad necesite.",
+      newContactBtn: "Añadir contacto", contactLabelLabel: "¿Para qué sirve?", contactLabelPlaceholder: "p. ej. Fontanero de guardia", contactPhoneLabel: "Teléfono", contactPhonePlaceholder: "p. ej. 600 123 456",
+      contactSubmit: "Guardar contacto", contactsEmpty: "Todavía no hay contactos guardados.",
       configEyebrow: "Preferencias", configTitle: "Configuración", configDesc: "Personaliza la apariencia de la aplicación a tu gusto.",
       unitSettingLabel: "Tu vivienda", unitSettingDesc: "Se usará para identificarte de forma anónima al reportar, comentar o votar — nunca se comparte tu nombre.",
       darkMode: "Modo oscuro", darkModeDesc: "Reduce el brillo de la pantalla para leer mejor con poca luz.",
@@ -61,7 +66,7 @@
       installApp: "Instalar app"
     },
     en: {
-      navHome: "Home", navPanel: "Community dashboard", navIncidents: "Incidents", navCommunity: "Community", navDocuments: "Documents", navSettings: "Settings",
+      navHome: "Home", navPanel: "Community dashboard", navIncidents: "Incidents", navCommunity: "Community", navDocuments: "Documents", navPhones: "Useful phone numbers", navSettings: "Settings",
       homeTitle: "Mis Vecinos", homeSubtitle: "Your building's shared space: incidents, notices, polls and documents — identified only by your unit, never by your name.",
       homeTilesTitle: "What do you want to do?", homeMostUsedTitle: "Most used",
       dashEyebrow: "Community", dashTitle: "Community dashboard", dashSubtitle: "A quick look at the building's incidents and documents.",
@@ -97,6 +102,11 @@
       docCategorySeguros: "Insurance", docCategoryPresupuestos: "Budgets", docCategoryEmpty: "No documents in this category yet.", docNoResults: "No documents match your search.",
       januaryMeeting: "Meeting — January 2024", januaryDate: "January 15, 2024",
       februaryMeeting: "Meeting — February 2024", februaryDate: "February 10, 2024", download: "Download",
+      phonesEyebrow: "Emergencies", phonesTitle: "Useful phone numbers", phonesSubtitle: "Numbers for an emergency or a problem in the building.",
+      phonesEmergencyTitle: "Emergencies", phone112Label: "Emergencies (all of Spain)", phone091Label: "National Police", phone062Label: "Civil Guard", phone061Label: "Medical emergencies",
+      phonesCommunityTitle: "Community contacts", phonesCommunityDesc: "Insurance, on-call plumber, electrician, locksmith, property manager... whatever your community needs.",
+      newContactBtn: "Add contact", contactLabelLabel: "What's it for?", contactLabelPlaceholder: "e.g. On-call plumber", contactPhoneLabel: "Phone", contactPhonePlaceholder: "e.g. 600 123 456",
+      contactSubmit: "Save contact", contactsEmpty: "No contacts saved yet.",
       configEyebrow: "Preferences", configTitle: "Settings", configDesc: "Customize how the application looks.",
       unitSettingLabel: "Your unit", unitSettingDesc: "Used to identify you anonymously when reporting, commenting or voting — your name is never shared.",
       darkMode: "Dark mode", darkModeDesc: "Reduce screen brightness for easier reading in low light.",
@@ -115,7 +125,7 @@
       installApp: "Install app"
     },
     ca: {
-      navHome: "Inici", navPanel: "Tauler de la comunitat", navIncidents: "Incidències", navCommunity: "Comunitat", navDocuments: "Documents", navSettings: "Configuració",
+      navHome: "Inici", navPanel: "Tauler de la comunitat", navIncidents: "Incidències", navCommunity: "Comunitat", navDocuments: "Documents", navPhones: "Telèfons d'interès", navSettings: "Configuració",
       homeTitle: "Mis Vecinos", homeSubtitle: "L'espai compartit de la teva finca: incidències, avisos, votacions i documents — identificat només pel teu habitatge, mai pel teu nom.",
       homeTilesTitle: "Què vols fer?", homeMostUsedTitle: "Més utilitzat",
       dashEyebrow: "Comunitat", dashTitle: "Tauler de la comunitat", dashSubtitle: "Un cop d'ull ràpid a les incidències i documents de l'edifici.",
@@ -151,6 +161,11 @@
       docCategorySeguros: "Assegurances", docCategoryPresupuestos: "Pressupostos", docCategoryEmpty: "Encara no hi ha documents en aquesta categoria.", docNoResults: "Cap document coincideix amb la cerca.",
       januaryMeeting: "Reunió — Gener 2024", januaryDate: "15 de gener de 2024",
       februaryMeeting: "Reunió — Febrer 2024", februaryDate: "10 de febrer de 2024", download: "Descarrega",
+      phonesEyebrow: "Emergències", phonesTitle: "Telèfons d'interès", phonesSubtitle: "Números útils per a una emergència o una avaria a l'edifici.",
+      phonesEmergencyTitle: "Emergències", phone112Label: "Emergències (tot Espanya)", phone091Label: "Policia Nacional", phone062Label: "Guàrdia Civil", phone061Label: "Emergències sanitàries",
+      phonesCommunityTitle: "Contactes de la comunitat", phonesCommunityDesc: "Assegurança, lampista de guàrdia, electricista, manyà, administrador... els que la teva comunitat necessiti.",
+      newContactBtn: "Afegeix contacte", contactLabelLabel: "Per a què serveix?", contactLabelPlaceholder: "p. ex. Lampista de guàrdia", contactPhoneLabel: "Telèfon", contactPhonePlaceholder: "p. ex. 600 123 456",
+      contactSubmit: "Desa el contacte", contactsEmpty: "Encara no hi ha contactes desats.",
       configEyebrow: "Preferències", configTitle: "Configuració", configDesc: "Personalitza l'aparença de l'aplicació al teu gust.",
       unitSettingLabel: "El teu pis", unitSettingDesc: "S'utilitzarà per identificar-te de manera anònima en reportar, comentar o votar — mai es comparteix el teu nom.",
       darkMode: "Mode fosc", darkModeDesc: "Redueix la brillantor de la pantalla per llegir millor amb poca llum.",
@@ -173,7 +188,7 @@
   var STORE_PREFIX = "misvecinos_";
   function load(key, fallback) { try { var v = localStorage.getItem(STORE_PREFIX + key); return v === null ? fallback : JSON.parse(v); } catch (e) { return fallback; } }
   function save(key, val) { try { localStorage.setItem(STORE_PREFIX + key, JSON.stringify(val)); return true; } catch (e) { toast(t('storageError')); return false; } }
-  var ALL_KEYS = ['language', 'darkMode', 'contrastMode', 'textScale', 'unit', 'incidents', 'resolvedIncidents', 'notices', 'polls', 'votedPolls'];
+  var ALL_KEYS = ['language', 'darkMode', 'contrastMode', 'textScale', 'unit', 'incidents', 'resolvedIncidents', 'notices', 'polls', 'votedPolls', 'contacts'];
 
   var state = {
     lang: load('language', 'es'),
@@ -186,6 +201,7 @@
     notices: load('notices', []),
     polls: load('polls', []),
     votedPolls: load('votedPolls', {}),
+    contacts: load('contacts', []),
     filters: { q: '', category: 'all', priority: 'all' }
   };
 
@@ -426,6 +442,13 @@
           setTimeout(function () { target.classList.remove('flash-highlight'); }, 1800);
         }, 50);
       }
+    } else if (presetTab) {
+      // venimos de un enlace a "pendientes"/"resueltas" desde el panel: el
+      // formulario de nueva incidencia va primero en el HTML (se apila
+      // encima de la lista en movil), asi que sin esto se aterriza viendo
+      // el formulario en vez de la lista que se pidio ver.
+      var listSection = $('incidentsListSection');
+      if (listSection) { setTimeout(function () { listSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50); }
     }
 
     $('filterQ').addEventListener('input', function () { state.filters.q = this.value; renderIncidents(); });
@@ -582,6 +605,40 @@
     var search = $('docSearch'); if (!search) return;
     search.addEventListener('input', renderDocs);
     renderDocs();
+  }
+
+  /* ---------- teléfonos de interés ---------- */
+  function renderContacts() {
+    var box = $('contactsList'); if (!box) return;
+    if (!state.contacts.length) { box.innerHTML = '<div class="card empty"><p>' + t('contactsEmpty') + '</p></div>'; return; }
+    box.innerHTML = state.contacts.map(function (c, idx) {
+      var dial = c.phone.replace(/[^0-9+]/g, '');
+      return '<div class="contact-row"><div><div class="contact-label">' + escapeHtml(c.label) + '</div>'
+        + '<a href="tel:' + escapeHtml(dial) + '">' + escapeHtml(c.phone) + '</a></div>'
+        + '<button type="button" class="btn btn-danger-ghost" data-contact-idx="' + idx + '">' + t('delete') + '</button></div>';
+    }).join('');
+  }
+
+  function initTelefonosPage() {
+    var form = $('contactForm'); if (!form) return;
+
+    $('toggleContactForm').addEventListener('click', function () { form.hidden = !form.hidden; });
+
+    $('contactsList').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-contact-idx]'); if (!b) return;
+      if (confirm(t('confirmDelete'))) { state.contacts.splice(parseInt(b.dataset.contactIdx, 10), 1); save('contacts', state.contacts); renderContacts(); }
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var label = $('contactLabel').value.trim(), phone = $('contactPhone').value.trim();
+      if (!label || !phone) return;
+      state.contacts.push({ label: label, phone: phone });
+      if (save('contacts', state.contacts)) { renderContacts(); form.reset(); form.hidden = true; toast(t('saved')); }
+      else state.contacts.pop();
+    });
+
+    renderContacts();
   }
 
   /* ---------- gráfica de Inicio ---------- */
@@ -818,6 +875,7 @@
     initIncidentsPage();
     initComunidadPage();
     initDocumentosPage();
+    initTelefonosPage();
     initConfigPage();
     initPWA();
   });

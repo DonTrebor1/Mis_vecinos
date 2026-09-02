@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis Vecinos — Incidencias</title>
-<meta name="description" content="Reporta y sigue el estado de las incidencias del edificio.">
+<title>Mis Vecinos — Teléfonos de interés</title>
+<meta name="description" content="Números de emergencia y contactos útiles de la comunidad.">
 <meta name="theme-color" content="#1e2732">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<meta property="og:title" content="Mis Vecinos — Incidencias">
-<meta property="og:description" content="Reporta y sigue el estado de las incidencias del edificio.">
+<meta property="og:title" content="Mis Vecinos — Teléfonos de interés">
+<meta property="og:description" content="Números de emergencia y contactos útiles de la comunidad.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="icons/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M4 19h16"/></svg>
         <span data-i18n="navPanel">Panel de la comunidad</span>
       </a>
-      <a class="nav-item active" href="incidencias.html">
+      <a class="nav-item" href="incidencias.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.8 2.8-2-2z"/></svg>
         <span data-i18n="navIncidents">Incidencias</span><span class="nav-badge" id="navIncidentsBadge" hidden></span>
       </a>
@@ -52,7 +52,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5M9.5 8.5h2"/></svg>
         <span data-i18n="navDocuments">Documentos</span>
       </a>
-      <a class="nav-item" href="telefonos.html">
+      <a class="nav-item active" href="telefonos.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 4.5h3.2l1.4 3.8-2 1.6a12.5 12.5 0 0 0 5.9 5.9l1.6-2 3.8 1.4v3.2a1.6 1.6 0 0 1-1.7 1.6C10.9 19.6 4.4 13.1 4 5.2a1.6 1.6 0 0 1 1.6-1.7Z"/></svg>
         <span data-i18n="navPhones">Teléfonos de interés</span>
       </a>
@@ -75,81 +75,54 @@
   </aside>
 
   <main class="content">
-<div class="view-head">
-        <p class="eyebrow" data-i18n="incEyebrow">Mantenimiento</p>
-        <h1 data-i18n="reportIncident">Incidencias</h1>
-        <p data-i18n="incInstructions">Describe el problema, adjunta fotos si puedes, y el administrador lo verá aquí mismo.</p>
+      <div class="view-head">
+        <p class="eyebrow" data-i18n="phonesEyebrow">Emergencias</p>
+        <h1 data-i18n="phonesTitle">Teléfonos de interés</h1>
+        <p data-i18n="phonesSubtitle">Números útiles para una emergencia o una avería en el edificio.</p>
       </div>
 
-      <div class="incidents-grid">
-        <div class="card pad">
-          <h3 style="margin-bottom:14px;font-size:1rem;" data-i18n="newIncidentTitle">Nueva incidencia</h3>
-          <form id="complaintForm">
-            <div class="form-group">
-              <label for="description" data-i18n="descriptionLabel">Descripción</label>
-              <textarea id="description" data-i18n-placeholder="placeholderDescription" placeholder="Describe tu problema..." required></textarea>
-            </div>
-            <div class="field-row">
-              <div class="form-group">
-                <label for="incCategory" data-i18n="categoryLabel">Categoría</label>
-                <select id="incCategory">
-                  <option value="plumbing" data-i18n="catPlumbing">Fontanería</option>
-                  <option value="electric" data-i18n="catElectric">Electricidad</option>
-                  <option value="elevator" data-i18n="catElevator">Ascensor</option>
-                  <option value="cleaning" data-i18n="catCleaning">Limpieza</option>
-                  <option value="common" data-i18n="catCommon">Zonas comunes</option>
-                  <option value="other" selected data-i18n="catOther">Otros</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="incPriority" data-i18n="priorityLabel">Prioridad</label>
-                <select id="incPriority">
-                  <option value="low" selected data-i18n="prioLow">Baja</option>
-                  <option value="medium" data-i18n="prioMedium">Media</option>
-                  <option value="urgent" data-i18n="prioUrgent">Urgente</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="incUnit" data-i18n="unitLabel">Tu vivienda (opcional)</label>
-              <input type="text" id="incUnit" data-i18n-placeholder="unitPlaceholder" placeholder="p. ej. 3ºB">
-            </div>
-            <div class="form-group">
-              <label data-i18n="attachImage">Fotos (opcional)</label>
-              <label class="file-drop" id="fileDrop">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-                <span id="fileLabel" data-i18n="noFileSelected">Ningún archivo seleccionado</span>
-                <input type="file" id="imageUpload" accept="image/*" multiple>
-              </label>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block" data-i18n="submitIncident">Enviar incidencia</button>
-          </form>
+      <div class="card pad" style="margin-bottom:22px;">
+        <div class="section-title"><span data-i18n="phonesEmergencyTitle">Emergencias</span></div>
+        <div class="phone-grid">
+          <a class="card phone-card" href="tel:112">
+            <div class="phone-num">112</div>
+            <div class="phone-label" data-i18n="phone112Label">Emergencias (toda España)</div>
+          </a>
+          <a class="card phone-card" href="tel:091">
+            <div class="phone-num">091</div>
+            <div class="phone-label" data-i18n="phone091Label">Policía Nacional</div>
+          </a>
+          <a class="card phone-card" href="tel:062">
+            <div class="phone-num">062</div>
+            <div class="phone-label" data-i18n="phone062Label">Guardia Civil</div>
+          </a>
+          <a class="card phone-card" href="tel:061">
+            <div class="phone-num">061</div>
+            <div class="phone-label" data-i18n="phone061Label">Emergencias sanitarias</div>
+          </a>
         </div>
+      </div>
 
-        <div id="incidentsListSection">
-          <div class="tabs">
-            <button class="tab-btn active" data-tab="open" data-i18n="tabOpen">Abiertas</button>
-            <button class="tab-btn" data-tab="resolved" data-i18n="tabResolved">Resueltas</button>
+      <div class="card pad">
+        <div class="section-title"><span data-i18n="phonesCommunityTitle">Contactos de la comunidad</span></div>
+        <p style="margin-top:-6px;" data-i18n="phonesCommunityDesc">Seguro, fontanero de guardia, electricista, cerrajero, administrador... los que tu comunidad necesite.</p>
+
+        <button class="btn btn-outline create-toggle" id="toggleContactForm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span data-i18n="newContactBtn">Añadir contacto</span>
+        </button>
+        <form id="contactForm" class="card pad create-form" hidden>
+          <div class="form-group">
+            <label for="contactLabel" data-i18n="contactLabelLabel">¿Para qué sirve?</label>
+            <input type="text" id="contactLabel" data-i18n-placeholder="contactLabelPlaceholder" placeholder="p. ej. Fontanero de guardia" required>
           </div>
-          <div class="filters-bar">
-            <input type="text" id="filterQ" data-i18n-placeholder="searchPlaceholder" placeholder="Buscar incidencias...">
-            <select id="filterCategory"><option value="all" data-i18n="filterCategoryAll">Todas las categorías</option>
-              <option value="plumbing" data-i18n="catPlumbing">Fontanería</option>
-              <option value="electric" data-i18n="catElectric">Electricidad</option>
-              <option value="elevator" data-i18n="catElevator">Ascensor</option>
-              <option value="cleaning" data-i18n="catCleaning">Limpieza</option>
-              <option value="common" data-i18n="catCommon">Zonas comunes</option>
-              <option value="other" data-i18n="catOther">Otros</option>
-            </select>
-            <select id="filterPriority"><option value="all" data-i18n="filterPriorityAll">Todas las prioridades</option>
-              <option value="low" data-i18n="prioLow">Baja</option>
-              <option value="medium" data-i18n="prioMedium">Media</option>
-              <option value="urgent" data-i18n="prioUrgent">Urgente</option>
-            </select>
+          <div class="form-group">
+            <label for="contactPhone" data-i18n="contactPhoneLabel">Teléfono</label>
+            <input type="text" id="contactPhone" data-i18n-placeholder="contactPhonePlaceholder" placeholder="p. ej. 600 123 456" required>
           </div>
-          <div id="incidentsList"></div>
-          <div id="resolvedList" hidden></div>
-        </div>
+          <button type="submit" class="btn btn-primary" data-i18n="contactSubmit">Guardar contacto</button>
+        </form>
+        <div id="contactsList"></div>
       </div>
   </main>
 </div>
