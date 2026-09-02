@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mis Vecinos — Inicio</title>
-<meta name="description" content="Panel de la comunidad: incidencias, avisos y documentos del edificio.">
+<meta name="description" content="El punto de encuentro de tu comunidad: incidencias, avisos, votaciones y documentos.">
 <meta name="theme-color" content="#1e2732">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta property="og:title" content="Mis Vecinos — Inicio">
-<meta property="og:description" content="Panel de la comunidad: incidencias, avisos y documentos del edificio.">
+<meta property="og:description" content="El punto de encuentro de tu comunidad: incidencias, avisos, votaciones y documentos.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="icons/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,13 +28,17 @@
 
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9.5L12 4l8 5.5V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 13h.01M15 13h.01M9 9.5h.01M15 9.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
       <span class="brand-name">Mis Vecinos</span>
     </div>
     <nav class="nav" id="navList">
       <a class="nav-item active" href="index.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
         <span data-i18n="navHome">Inicio</span>
+      </a>
+      <a class="nav-item" href="panel.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M4 19h16"/></svg>
+        <span data-i18n="navPanel">Panel de la comunidad</span>
       </a>
       <a class="nav-item" href="incidencias.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.8 2.8-2-2z"/></svg>
@@ -67,65 +71,60 @@
   </aside>
 
   <main class="content">
-<div class="view-head">
-        <p class="eyebrow" data-i18n="dashEyebrow">Comunidad</p>
-        <h1 data-i18n="dashTitle">Panel de la comunidad</h1>
-        <p data-i18n="dashSubtitle">Un vistazo rápido a las incidencias y documentos del edificio.</p>
-      </div>
-
-      <div id="urgentBanner"></div>
-
-      <div class="stats">
-        <div class="card stat pending">
-          <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg></div></div>
-          <div class="stat-num" id="statPending">0</div>
-          <div class="stat-label" data-i18n="statPending">Incidencias pendientes</div>
-        </div>
-        <div class="card stat resolved">
-          <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></div>
-          <div class="stat-num" id="statResolved">0</div>
-          <div class="stat-label" data-i18n="statResolved">Incidencias resueltas</div>
-        </div>
-        <div class="card stat docs">
-          <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg></div></div>
-          <div class="stat-num" id="statDocs">0</div>
-          <div class="stat-label" data-i18n="statDocuments">Documentos disponibles</div>
+      <div class="home-hero">
+        <div class="home-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg></div>
+        <div>
+          <h1 data-i18n="homeTitle">Mis Vecinos</h1>
+          <p data-i18n="homeSubtitle">El espacio compartido de tu finca: incidencias, avisos, votaciones y documentos — identificado solo por tu vivienda, nunca por tu nombre.</p>
         </div>
       </div>
 
-      <div class="quick-actions">
-        <div class="card quick-card">
-          <h3 data-i18n="quickReportTitle">Reportar una incidencia</h3>
-          <p data-i18n="quickReportDesc">Avisa al administrador de un problema en el edificio, con foto si hace falta.</p>
-          <a class="btn btn-primary" href="incidencias.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <span data-i18n="quickReportBtn">Nueva incidencia</span>
+      <div class="tile-section">
+        <p class="tile-section-title" data-i18n="homeTilesTitle">¿Qué quieres hacer?</p>
+        <div class="tile-grid">
+          <a class="card tile t-panel" href="panel.html">
+            <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M4 19h16"/></svg></div>
+            <div class="tile-label" data-i18n="navPanel">Panel de la comunidad</div>
           </a>
-        </div>
-        <div class="card quick-card">
-          <h3 data-i18n="quickDocsTitle">Consultar documentos</h3>
-          <p data-i18n="quickDocsDesc">Actas, normativa y presupuestos de la comunidad, todo en un mismo sitio.</p>
-          <a class="btn btn-outline" href="documentos.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg>
-            <span data-i18n="quickDocsBtn">Ver documentos</span>
+          <a class="card tile t-inc" href="incidencias.html">
+            <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.8 2.8-2-2z"/></svg></div>
+            <div class="tile-label" data-i18n="navIncidents">Incidencias</div>
+          </a>
+          <a class="card tile t-com" href="comunidad.html">
+            <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 8.5a4 4 0 0 1 0 7M19 6a7.5 7.5 0 0 1 0 12"/></svg></div>
+            <div class="tile-label" data-i18n="navCommunity">Comunidad</div>
+          </a>
+          <a class="card tile t-doc" href="documentos.html">
+            <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5M9.5 8.5h2"/></svg></div>
+            <div class="tile-label" data-i18n="navDocuments">Documentos</div>
+          </a>
+          <a class="card tile t-cfg" href="configuracion.html">
+            <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V19.6a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H4.4a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10.5a1.7 1.7 0 0 0 1-1.55V4.4a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10.5a1.7 1.7 0 0 0 1.55 1H19.6a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1z"/></svg></div>
+            <div class="tile-label" data-i18n="navSettings">Configuración</div>
           </a>
         </div>
       </div>
 
-      <div class="card pad" style="margin-bottom:22px;">
-        <div class="section-title"><span data-i18n="chartTitle">Incidencias por mes</span></div>
-        <div class="chart-wrap">
-          <canvas class="chart-canvas" id="chartCanvas"></canvas>
-          <div class="chart-legend" id="chartLegend"></div>
+      <div class="tile-section">
+        <p class="tile-section-title" data-i18n="homeMostUsedTitle">Más usado</p>
+        <div class="quick-row">
+          <div class="card quick-card">
+            <h3 data-i18n="quickReportTitle">Reportar una incidencia</h3>
+            <p data-i18n="quickReportDesc">Avisa al administrador de un problema en el edificio, con foto si hace falta.</p>
+            <a class="btn btn-primary" href="incidencias.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span data-i18n="quickReportBtn">Nueva incidencia</span>
+            </a>
+          </div>
+          <div class="card quick-card">
+            <h3 data-i18n="quickDocsTitle">Consultar documentos</h3>
+            <p data-i18n="quickDocsDesc">Actas, normativa y presupuestos de la comunidad, todo en un mismo sitio.</p>
+            <a class="btn btn-outline" href="documentos.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg>
+              <span data-i18n="quickDocsBtn">Ver documentos</span>
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div class="card pad">
-        <div class="section-title">
-          <span data-i18n="recentTitle">Actividad reciente</span>
-          <a href="incidencias.html" data-i18n="recentSeeAll">Ver todas →</a>
-        </div>
-        <div class="recent-list" id="recentList"></div>
       </div>
   </main>
 </div>

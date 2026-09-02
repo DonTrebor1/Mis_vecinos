@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis Vecinos — Configuración</title>
-<meta name="description" content="Idioma, modo oscuro, contraste y copia de seguridad de tus datos.">
+<title>Mis Vecinos — Panel de la comunidad</title>
+<meta name="description" content="Estadisticas de incidencias, grafico anual y actividad reciente de tu comunidad.">
 <meta name="theme-color" content="#1e2732">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<meta property="og:title" content="Mis Vecinos — Configuración">
-<meta property="og:description" content="Idioma, modo oscuro, contraste y copia de seguridad de tus datos.">
+<meta property="og:title" content="Mis Vecinos — Panel de la comunidad">
+<meta property="og:description" content="Estadisticas de incidencias, grafico anual y actividad reciente de tu comunidad.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="icons/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M5.5 9.5V20a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
         <span data-i18n="navHome">Inicio</span>
       </a>
-      <a class="nav-item" href="panel.html">
+      <a class="nav-item active" href="panel.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M4 19h16"/></svg>
         <span data-i18n="navPanel">Panel de la comunidad</span>
       </a>
@@ -52,7 +52,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5M9.5 8.5h2"/></svg>
         <span data-i18n="navDocuments">Documentos</span>
       </a>
-      <a class="nav-item active" href="configuracion.html">
+      <a class="nav-item" href="configuracion.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V19.6a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H4.4a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10.5a1.7 1.7 0 0 0 1-1.55V4.4a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10.5a1.7 1.7 0 0 0 1.55 1H19.6a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1z"/></svg>
         <span data-i18n="navSettings">Configuración</span>
       </a>
@@ -72,84 +72,56 @@
 
   <main class="content">
 <div class="view-head">
-        <p class="eyebrow" data-i18n="configEyebrow">Preferencias</p>
-        <h1 data-i18n="configTitle">Configuración</h1>
-        <p data-i18n="configDesc">Personaliza la apariencia de la aplicación a tu gusto.</p>
+        <p class="eyebrow" data-i18n="dashEyebrow">Comunidad</p>
+        <h1 data-i18n="dashTitle">Panel de la comunidad</h1>
+        <p data-i18n="dashSubtitle">Un vistazo rápido a las incidencias y documentos del edificio.</p>
       </div>
 
-      <div class="card pad" style="margin-bottom:16px;">
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="unitSettingLabel">Tu vivienda</h4><p data-i18n="unitSettingDesc">Se usará para identificarte de forma anónima al reportar, comentar o votar — nunca se comparte tu nombre.</p></div>
-          <div class="setting-control"><input type="text" id="unitSetting" data-i18n-placeholder="unitPlaceholder" placeholder="p. ej. 3ºB"></div>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="darkMode">Modo oscuro</h4><p data-i18n="darkModeDesc">Reduce el brillo de la pantalla para leer mejor con poca luz.</p></div>
-          <div class="setting-control"><label class="switch"><input type="checkbox" id="darkModeToggle"><span class="slider"></span></label></div>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="contrastMode">Contraste alto</h4><p data-i18n="contrastModeDesc">Aumenta el contraste para que los elementos se vean con más claridad.</p></div>
-          <div class="setting-control"><label class="switch"><input type="checkbox" id="contrastToggle"><span class="slider"></span></label></div>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="textSize">Tamaño del texto</h4><p data-i18n="textSizeDesc">Ajusta el tamaño del texto para leer con más comodidad.</p></div>
-          <div class="setting-control text-size-controls" id="textSizeControls">
-            <button class="size-btn" data-size="0.9">A-</button>
-            <button class="size-btn active" data-size="1">A</button>
-            <button class="size-btn" data-size="1.15">A+</button>
-            <button class="size-btn" data-size="1.3">A++</button>
-          </div>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="language">Idioma</h4><p data-i18n="languageDesc">Elige el idioma en el que quieres ver la aplicación.</p></div>
-          <div class="setting-control">
-            <select id="languageSelect">
-              <option value="es" data-i18n="spanish">Español</option>
-              <option value="ca" data-i18n="catalan">Català</option>
-              <option value="en" data-i18n="english">English</option>
-            </select>
-          </div>
-        </div>
+      <div id="urgentBanner"></div>
+
+      <div class="stats">
+        <a class="card stat pending stat-link" href="incidencias.html?tab=open">
+          <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg></div></div>
+          <div class="stat-num" id="statPending">0</div>
+          <div class="stat-label" data-i18n="statPending">Incidencias pendientes</div>
+          <div class="stat-cta" data-i18n="statPendingCta">Ver pendientes →</div>
+        </a>
+        <a class="card stat resolved stat-link" href="incidencias.html?tab=resolved">
+          <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+          <div class="stat-num" id="statResolved">0</div>
+          <div class="stat-label" data-i18n="statResolved">Incidencias resueltas</div>
+          <div class="stat-cta" data-i18n="statResolvedCta">Ver resueltas →</div>
+        </a>
+        <a class="card stat docs stat-link" href="documentos.html">
+          <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg></div></div>
+          <div class="stat-num" id="statDocs">0</div>
+          <div class="stat-label" data-i18n="statDocuments">Documentos disponibles</div>
+          <div class="stat-cta" data-i18n="statDocsCta">Ver documentos →</div>
+        </a>
       </div>
 
-      <div class="card pad" style="margin-bottom:16px;">
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="demoDataLabel">Datos de ejemplo</h4><p data-i18n="demoDataDesc">Rellena la app con incidencias, avisos y una votación de ejemplo para probarla.</p></div>
-          <div class="setting-control"><button class="btn btn-outline" id="loadDemoBtn" data-i18n="loadDemoBtn">Cargar datos de ejemplo</button></div>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="backupLabel">Copia de seguridad</h4><p data-i18n="backupDesc">Todos tus datos viven solo en este navegador. Exporta una copia de vez en cuando por si acaso.</p></div>
-          <div class="setting-control" style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-outline" id="exportBtn" data-i18n="exportBtn">Exportar datos</button>
-            <button class="btn btn-outline" id="importBtn" data-i18n="importBtn">Importar datos</button>
-            <input type="file" id="importFile" accept="application/json" hidden>
-          </div>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy"><h4 data-i18n="resetDataLabel">Borrar todos los datos</h4><p data-i18n="resetDataDesc">Elimina incidencias, avisos y votaciones guardadas en este navegador. No se puede deshacer.</p></div>
-          <div class="setting-control"><button class="btn btn-danger-ghost" id="resetDataBtn" data-i18n="resetDataBtn">Borrar datos</button></div>
+
+      <div class="card pad" style="margin-bottom:22px;">
+        <div class="section-title"><span data-i18n="chartTitle">Incidencias por mes</span></div>
+        <div class="chart-wrap">
+          <canvas class="chart-canvas" id="chartCanvas"></canvas>
+          <div class="chart-legend" id="chartLegend"></div>
         </div>
       </div>
 
-      <button class="btn btn-primary" id="saveBtn" data-i18n="savePreferences">Guardar preferencias</button>
+      <div class="card pad">
+        <div class="section-title">
+          <span data-i18n="recentTitle">Actividad reciente</span>
+          <a href="incidencias.html" data-i18n="recentSeeAll">Ver todas →</a>
+        </div>
+        <div class="recent-list" id="recentList"></div>
+      </div>
   </main>
 </div>
 
 <div class="toast" id="toast">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
   <span id="toastText"></span>
-</div>
-
-<div class="modal-backdrop" id="backupModal">
-  <div class="modal">
-    <h3 data-i18n="backupModalTitle">Copia de seguridad</h3>
-    <p data-i18n="backupModalDesc" style="font-size:.84rem;color:var(--ink-muted);">Descarga el archivo o copia el texto para guardarlo en otro sitio.</p>
-    <textarea id="backupText" readonly></textarea>
-    <div class="modal-actions">
-      <button class="btn btn-primary" id="backupDownloadBtn" data-i18n="backupDownload">Descargar archivo</button>
-      <button class="btn btn-outline" id="backupCopyBtn" data-i18n="backupCopy">Copiar</button>
-      <button class="btn btn-ghost" id="backupCloseBtn" data-i18n="backupClose">Cerrar</button>
-    </div>
-  </div>
 </div>
 
 <script src="script.js"></script>

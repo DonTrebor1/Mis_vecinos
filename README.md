@@ -9,9 +9,13 @@ consultar actas y normativa, todo desde el móvil.
 
 ## Funcionalidades
 
-- **Panel de inicio**: incidencias pendientes/resueltas, documentos
-  disponibles, gráfica de incidencias por mes y tiempo medio de resolución —
-  todo calculado en el momento a partir de tus propios datos.
+- **Inicio**: pantalla de acceso rápido con un lanzador a cada sección y
+  los accesos más usados (nueva incidencia, ver documentos).
+- **Panel de la comunidad**: incidencias pendientes/resueltas (clicables,
+  llevan a la lista filtrada), documentos disponibles, gráfica de
+  incidencias del año y tiempo medio de resolución, y actividad reciente
+  con enlace directo a cada incidencia — todo calculado en el momento a
+  partir de tus propios datos.
 - **Incidencias**: descripción, categoría (fontanería, electricidad,
   ascensor, limpieza, zonas comunes...), prioridad, varias fotos, comentarios,
   y un flujo de estados Pendiente → Vista → Resuelta. Buscador y filtros por
@@ -43,7 +47,8 @@ tiempo de ejecución.
 ## Estructura
 
 ```
-index.html          Panel de inicio
+index.html          Inicio: lanzador con accesos a cada sección
+panel.html           Panel de la comunidad: estadísticas, gráfico, actividad
 incidencias.html     Reportar y gestionar incidencias
 comunidad.html        Avisos y votaciones
 documentos.html      Actas, normativa, seguros, presupuestos

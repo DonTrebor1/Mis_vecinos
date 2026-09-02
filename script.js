@@ -7,9 +7,12 @@
 
   var translations = {
     es: {
-      navHome: "Inicio", navIncidents: "Incidencias", navCommunity: "Comunidad", navDocuments: "Documentos", navSettings: "Configuración",
+      navHome: "Inicio", navPanel: "Panel de la comunidad", navIncidents: "Incidencias", navCommunity: "Comunidad", navDocuments: "Documentos", navSettings: "Configuración",
+      homeTitle: "Mis Vecinos", homeSubtitle: "El espacio compartido de tu finca: incidencias, avisos, votaciones y documentos — identificado solo por tu vivienda, nunca por tu nombre.",
+      homeTilesTitle: "¿Qué quieres hacer?", homeMostUsedTitle: "Más usado",
       dashEyebrow: "Comunidad", dashTitle: "Panel de la comunidad", dashSubtitle: "Un vistazo rápido a las incidencias y documentos del edificio.",
       statPending: "Incidencias pendientes", statResolved: "Incidencias resueltas", statDocuments: "Documentos disponibles",
+      statPendingCta: "Ver pendientes →", statResolvedCta: "Ver resueltas →", statDocsCta: "Ver documentos →",
       urgentBanner1: "incidencia urgente sin resolver.", urgentBannerN: "incidencias urgentes sin resolver.", urgentBannerSee: "Ver",
       quickReportTitle: "Reportar una incidencia", quickReportDesc: "Avisa al administrador de un problema en el edificio, con foto si hace falta.", quickReportBtn: "Nueva incidencia",
       quickDocsTitle: "Consultar documentos", quickDocsDesc: "Actas, normativa y presupuestos de la comunidad, todo en un mismo sitio.", quickDocsBtn: "Ver documentos",
@@ -58,9 +61,12 @@
       installApp: "Instalar app"
     },
     en: {
-      navHome: "Home", navIncidents: "Incidents", navCommunity: "Community", navDocuments: "Documents", navSettings: "Settings",
+      navHome: "Home", navPanel: "Community dashboard", navIncidents: "Incidents", navCommunity: "Community", navDocuments: "Documents", navSettings: "Settings",
+      homeTitle: "Mis Vecinos", homeSubtitle: "Your building's shared space: incidents, notices, polls and documents — identified only by your unit, never by your name.",
+      homeTilesTitle: "What do you want to do?", homeMostUsedTitle: "Most used",
       dashEyebrow: "Community", dashTitle: "Community dashboard", dashSubtitle: "A quick look at the building's incidents and documents.",
       statPending: "Pending incidents", statResolved: "Resolved incidents", statDocuments: "Available documents",
+      statPendingCta: "View pending →", statResolvedCta: "View resolved →", statDocsCta: "View documents →",
       urgentBanner1: "urgent incident still open.", urgentBannerN: "urgent incidents still open.", urgentBannerSee: "View",
       quickReportTitle: "Report an incident", quickReportDesc: "Let the administrator know about a problem in the building, with a photo if needed.", quickReportBtn: "New incident",
       quickDocsTitle: "Check the documents", quickDocsDesc: "Minutes, rules and budgets for the community, all in one place.", quickDocsBtn: "View documents",
@@ -109,9 +115,12 @@
       installApp: "Install app"
     },
     ca: {
-      navHome: "Inici", navIncidents: "Incidències", navCommunity: "Comunitat", navDocuments: "Documents", navSettings: "Configuració",
+      navHome: "Inici", navPanel: "Tauler de la comunitat", navIncidents: "Incidències", navCommunity: "Comunitat", navDocuments: "Documents", navSettings: "Configuració",
+      homeTitle: "Mis Vecinos", homeSubtitle: "L'espai compartit de la teva finca: incidències, avisos, votacions i documents — identificat només pel teu habitatge, mai pel teu nom.",
+      homeTilesTitle: "Què vols fer?", homeMostUsedTitle: "Més utilitzat",
       dashEyebrow: "Comunitat", dashTitle: "Tauler de la comunitat", dashSubtitle: "Un cop d'ull ràpid a les incidències i documents de l'edifici.",
       statPending: "Incidències pendents", statResolved: "Incidències resoltes", statDocuments: "Documents disponibles",
+      statPendingCta: "Veure pendents →", statResolvedCta: "Veure resoltes →", statDocsCta: "Veure documents →",
       urgentBanner1: "incidència urgent sense resoldre.", urgentBannerN: "incidències urgents sense resoldre.", urgentBannerSee: "Veure",
       quickReportTitle: "Reportar una incidència", quickReportDesc: "Avisa l'administrador d'un problema a l'edifici, amb foto si cal.", quickReportBtn: "Nova incidència",
       quickDocsTitle: "Consultar documents", quickDocsDesc: "Actes, normativa i pressupostos de la comunitat, tot en un mateix lloc.", quickDocsBtn: "Veure documents",
@@ -266,7 +275,7 @@
     if (recentBox) {
       var all = state.incidents.concat(state.resolved).slice().sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); }).slice(0, 3);
       recentBox.innerHTML = all.length
-        ? all.map(function (i) { return '<div class="recent-row"><div class="recent-desc">' + escapeHtml(i.description) + '</div>' + statusPill(i.status) + '</div>'; }).join('')
+        ? all.map(function (i) { var tab = i.status === 'Resuelta' ? 'resolved' : 'open'; return '<a class="recent-row" href="incidencias.html?tab=' + tab + '#inc-' + i.createdAt + '"><div class="recent-desc">' + escapeHtml(i.description) + '</div>' + statusPill(i.status) + '</a>'; }).join('')
         : '<p style="color:var(--ink-muted);font-size:.88rem;margin:0;">' + t('recentEmpty') + '</p>';
     }
 
@@ -314,7 +323,7 @@
       + '<button type="button" class="btn btn-danger-ghost" data-act="delete" data-idx="' + idx + '">' + t('delete') + '</button>'
       + '</div>'
       : '<div class="incident-actions"><button type="button" class="btn btn-danger-ghost" data-act="delete-resolved" data-idx="' + idx + '">' + t('delete') + '</button></div>';
-    return '<div class="card incident-card">'
+    return '<div class="card incident-card" id="inc-' + inc.createdAt + '">'
       + '<div class="incident-top">' + statusPill(inc.status) + categoryTag(inc.category) + priorityPill(inc.priority) + '</div>'
       + '<p class="incident-desc">' + escapeHtml(inc.description) + '</p>'
       + imgs
@@ -396,8 +405,28 @@
     var params = new URLSearchParams(window.location.search);
     var presetPriority = params.get('priority');
     if (presetPriority) { state.filters.priority = presetPriority; }
+    var presetTab = params.get('tab');
+    if (presetTab === 'open' || presetTab === 'resolved') {
+      document.querySelectorAll('.incidents-grid .tab-btn').forEach(function (x) { x.classList.toggle('active', x.dataset.tab === presetTab); });
+      $('incidentsList').hidden = presetTab !== 'open';
+      $('resolvedList').hidden = presetTab !== 'resolved';
+    }
     syncFilterControls();
     renderIncidents();
+
+    // si venimos de un enlace a una incidencia concreta (p.ej. desde
+    // "Actividad reciente" en el panel), la desplazamos a la vista y la
+    // resaltamos un instante para que se encuentre entre el resto de tarjetas
+    if (window.location.hash.indexOf('#inc-') === 0) {
+      var target = document.querySelector(window.location.hash);
+      if (target) {
+        setTimeout(function () {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('flash-highlight');
+          setTimeout(function () { target.classList.remove('flash-highlight'); }, 1800);
+        }, 50);
+      }
+    }
 
     $('filterQ').addEventListener('input', function () { state.filters.q = this.value; renderIncidents(); });
     $('filterCategory').addEventListener('change', function () { state.filters.category = this.value; renderIncidents(); });
@@ -561,7 +590,7 @@
     var all = state.incidents.concat(state.resolved);
     var months = [];
     var now = new Date();
-    for (var i = 5; i >= 0; i--) { months.push(new Date(now.getFullYear(), now.getMonth() - i, 1)); }
+    for (var i = 11; i >= 0; i--) { months.push(new Date(now.getFullYear(), now.getMonth() - i, 1)); }
     var counts = months.map(function (m) {
       return all.filter(function (inc) {
         if (!inc.createdAt) return false;
@@ -589,14 +618,19 @@
       var y = padTop + plotH * g / 2;
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.globalAlpha = .6; ctx.stroke(); ctx.globalAlpha = 1;
     }
-    var n = counts.length, gap = 14, barW = (w - gap * (n + 1)) / n;
+    // slotW reparte el ancho entero entre los 12 meses; barW se dibuja mas
+    // fina que el slot y centrada en el, asi las etiquetas siguen bien
+    // espaciadas aunque la barra en si sea delgada.
+    var n = counts.length, gap = 6, slotW = (w - gap * (n + 1)) / n;
+    var barW = Math.max(4, Math.min(slotW * 0.42, 14));
     ctx.font = '600 11px "Public Sans", sans-serif';
     for (var i2 = 0; i2 < n; i2++) {
       var bh = max ? (counts[i2] / max) * plotH : 0;
-      var x = gap + i2 * (barW + gap);
+      var slotX = gap + i2 * (slotW + gap);
+      var x = slotX + (slotW - barW) / 2;
       var y2 = padTop + plotH - bh;
       ctx.beginPath();
-      var r = Math.min(5, barW / 2);
+      var r = Math.min(4, barW / 2);
       ctx.moveTo(x, y2 + bh);
       ctx.arcTo(x, y2, x + r, y2, r);
       ctx.arcTo(x + barW, y2, x + barW, y2 + r, r);
@@ -604,9 +638,9 @@
       ctx.closePath();
       ctx.fillStyle = accent; ctx.fill();
       ctx.fillStyle = muted; ctx.textAlign = 'center';
-      if (counts[i2] > 0) ctx.fillText(String(counts[i2]), x + barW / 2, y2 - 4);
-      ctx.font = '500 10px "Public Sans", sans-serif';
-      ctx.fillText(months[i2].toLocaleDateString(state.lang === 'en' ? 'en-US' : (state.lang === 'ca' ? 'ca-ES' : 'es-ES'), { month: 'short' }), x + barW / 2, h - 6);
+      if (counts[i2] > 0) ctx.fillText(String(counts[i2]), slotX + slotW / 2, y2 - 4);
+      ctx.font = '600 12px "Public Sans", sans-serif';
+      ctx.fillText(months[i2].toLocaleDateString(state.lang === 'en' ? 'en-US' : (state.lang === 'ca' ? 'ca-ES' : 'es-ES'), { month: 'short' }), slotX + slotW / 2, h - 6);
       ctx.font = '600 11px "Public Sans", sans-serif';
     }
     var resolvedWithTimes = state.resolved.filter(function (r) { return r.createdAt && r.resolvedAt; });

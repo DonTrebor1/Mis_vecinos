@@ -96,7 +96,7 @@
   .nav-item{
     display:flex; align-items:center; gap:12px; width:100%; text-align:left;
     background:transparent; border:none; color:var(--navy-ink); padding:11px 12px; border-radius:8px;
-    font-size:.94rem; font-weight:500; cursor:pointer; transition:background .15s, color .15s;
+    font-size:.94rem; font-weight:500; cursor:pointer; text-decoration:none; transition:background .15s, color .15s;
   }
   .nav-item svg{ width:19px; height:19px; flex:0 0 auto; opacity:.85; }
   .nav-item:hover{ background:var(--navy-soft); color:#fff; }
@@ -151,7 +151,7 @@
 
   .btn{
     display:inline-flex; align-items:center; gap:8px; border:none; border-radius:8px; padding:10px 16px;
-    font-size:.88rem; font-weight:600; cursor:pointer; transition:background .15s, filter .15s, transform .1s; white-space:nowrap;
+    font-size:.88rem; font-weight:600; cursor:pointer; text-decoration:none; transition:background .15s, filter .15s, transform .1s; white-space:nowrap;
   }
   .btn svg{ width:15px; height:15px; flex:0 0 auto; }
   .btn:active{ transform:translateY(1px); }
@@ -170,8 +170,13 @@
   .section-title a{ font-size:.8rem; font-weight:600; text-decoration:none; }
 
   .recent-list{ display:flex; flex-direction:column; }
-  .recent-row{ display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border); }
+  .recent-row{ display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border); text-decoration:none; color:inherit; }
   .recent-row:first-child{ border-top:none; }
+  a.recent-row{ cursor:pointer; }
+  a.recent-row:hover .recent-desc{ color:var(--accent); }
+  @keyframes flashHighlight{ 0%,100%{ box-shadow:none; } 30%{ box-shadow:0 0 0 3px var(--accent); } }
+  .flash-highlight{ animation:flashHighlight 1.8s ease; }
+  @media (prefers-reduced-motion: reduce){ .flash-highlight{ animation:none; outline:2px solid var(--accent); } }
   .recent-desc{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:.88rem; }
   .empty{ text-align:center; padding:34px 20px; color:var(--ink-muted); }
   .empty svg{ width:32px; height:32px; margin-bottom:10px; opacity:.5; }
@@ -329,3 +334,38 @@
   }
 /* [hidden] pierde ante .theme-quick{display:flex} por igual especificidad si no se refuerza aqui */
 #installAppBtn[hidden]{ display:none; }
+
+/* ---------- Inicio (lanzador) ---------- */
+.home-hero{ display:flex; align-items:center; gap:18px; margin-bottom:30px; }
+.home-badge{ width:60px; height:60px; flex:0 0 auto; border-radius:16px; background:var(--navy); display:flex; align-items:center; justify-content:center; }
+.home-badge svg{ width:32px; height:32px; color:var(--accent-strong); }
+.home-hero h1{ font-size:2.15rem; margin:0 0 4px; }
+.home-hero p{ margin:0; color:var(--ink-muted); max-width:52ch; }
+
+.tile-section{ margin-bottom:30px; }
+.tile-section-title{ font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-muted); margin:0 0 12px; }
+.tile-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+.tile{ padding:20px 14px; display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; text-decoration:none; color:inherit; transition:transform .15s ease, border-color .15s ease; }
+.tile:hover{ transform:translateY(-2px); border-color:var(--accent); }
+.tile:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.tile-icon{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; }
+.tile-icon svg{ width:21px; height:21px; }
+.tile-label{ font-size:.85rem; font-weight:600; }
+.tile.t-panel .tile-icon{ background:var(--violet-soft); color:var(--violet); }
+.tile.t-inc .tile-icon{ background:var(--amber-soft); color:var(--amber); }
+.tile.t-com .tile-icon{ background:var(--blue-soft); color:var(--blue); }
+.tile.t-doc .tile-icon{ background:var(--green-soft); color:var(--green); }
+.tile.t-cfg .tile-icon{ background:var(--surface-2); color:var(--ink-muted); border:1px solid var(--border); }
+
+.quick-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+/* ---------- Panel de la comunidad: tarjetas de estadistica clicables ---------- */
+.stat-link{ text-decoration:none; color:inherit; display:block; transition:transform .15s ease, border-color .15s ease; }
+.stat-link:hover{ transform:translateY(-2px); border-color:var(--accent); }
+.stat-link:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.stat-cta{ color:var(--accent); font-size:.78rem; font-weight:600; margin-top:10px; }
+
+@media (max-width:880px){
+  .tile-grid{ grid-template-columns:repeat(2,1fr); }
+  .quick-row{ grid-template-columns:1fr; }
+}
