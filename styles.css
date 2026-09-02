@@ -72,7 +72,7 @@
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3,h4{
-    font-family:"Fraunces", Georgia, "Times New Roman", serif;
+    font-family:"Lora", Georgia, "Times New Roman", serif;
     font-weight:600; letter-spacing:-.01em; margin:0 0 .3em; text-wrap:balance;
   }
   p{ margin:0 0 1em; line-height:1.6; color:var(--ink); max-width:62ch; }
@@ -91,7 +91,7 @@
   }
   .brand{ display:flex; align-items:center; gap:10px; padding:6px 10px 22px; }
   .brand svg{ width:30px; height:30px; flex:0 0 auto; color:var(--accent-strong); }
-  .brand-name{ font-family:"Fraunces",serif; font-weight:600; font-size:1.15rem; color:#fff; letter-spacing:-.01em; }
+  .brand-name{ font-family:"Lora",serif; font-weight:600; font-size:1.15rem; color:#fff; letter-spacing:-.01em; }
   .nav{ display:flex; flex-direction:column; gap:2px; flex:1; }
   .nav-item{
     display:flex; align-items:center; gap:12px; width:100%; text-align:left;
@@ -141,7 +141,7 @@
   .stat.pending .stat-icon{ background:var(--amber-soft); color:var(--amber); }
   .stat.resolved .stat-icon{ background:var(--green-soft); color:var(--green); }
   .stat.docs .stat-icon{ background:var(--blue-soft); color:var(--blue); }
-  .stat-num{ font-family:"Fraunces",serif; font-size:2.1rem; font-weight:600; line-height:1; font-variant-numeric:tabular-nums; }
+  .stat-num{ font-family:"Lora",serif; font-size:2.1rem; font-weight:600; line-height:1; font-variant-numeric:tabular-nums; }
   .stat-label{ color:var(--ink-muted); font-size:.85rem; margin-top:4px; }
 
   .quick-actions{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px; }
@@ -376,7 +376,7 @@
 .phone-grid-single{ grid-template-columns:minmax(180px,240px); }
 .phone-card{ padding:16px 18px; display:flex; flex-direction:column; gap:6px; text-decoration:none; color:inherit; transition:transform .15s ease, border-color .15s ease; }
 .phone-card:hover{ transform:translateY(-2px); border-color:var(--accent); }
-.phone-card .phone-num{ font-family:"Fraunces",serif; font-size:1.35rem; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums; }
+.phone-card .phone-num{ font-family:"Lora",serif; font-size:1.35rem; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums; }
 .phone-card .phone-label{ font-size:.82rem; color:var(--ink-muted); }
 
 .contact-tile{ position:relative; }
