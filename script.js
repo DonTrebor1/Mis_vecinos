@@ -44,7 +44,7 @@
       januaryMeeting: "Reunión — Enero 2024", januaryDate: "15 de enero, 2024",
       februaryMeeting: "Reunión — Febrero 2024", februaryDate: "10 de febrero, 2024", download: "Descargar",
       phonesEyebrow: "Emergencias", phonesTitle: "Teléfonos de interés", phonesSubtitle: "Números útiles para una emergencia o una avería en el edificio.",
-      phonesEmergencyTitle: "Emergencias", phone112Label: "Emergencias (toda España)", phone091Label: "Policía Nacional", phone062Label: "Guardia Civil", phone061Label: "Emergencias sanitarias",
+      phonesEmergencyTitle: "Emergencias", phonesEmergencyDesc: "El 112 cubre policía, bomberos, ambulancias y protección civil en toda España — un único número para cualquier emergencia.", phone112Label: "Emergencias (toda España)",
       phonesCommunityTitle: "Contactos de la comunidad", phonesCommunityDesc: "Seguro, fontanero de guardia, electricista, cerrajero, administrador... los que tu comunidad necesite.",
       newContactBtn: "Añadir contacto", contactLabelLabel: "¿Para qué sirve?", contactLabelPlaceholder: "p. ej. Fontanero de guardia", contactPhoneLabel: "Teléfono", contactPhonePlaceholder: "p. ej. 600 123 456",
       contactSubmit: "Guardar contacto", contactsEmpty: "Todavía no hay contactos guardados.",
@@ -103,7 +103,7 @@
       januaryMeeting: "Meeting — January 2024", januaryDate: "January 15, 2024",
       februaryMeeting: "Meeting — February 2024", februaryDate: "February 10, 2024", download: "Download",
       phonesEyebrow: "Emergencies", phonesTitle: "Useful phone numbers", phonesSubtitle: "Numbers for an emergency or a problem in the building.",
-      phonesEmergencyTitle: "Emergencies", phone112Label: "Emergencies (all of Spain)", phone091Label: "National Police", phone062Label: "Civil Guard", phone061Label: "Medical emergencies",
+      phonesEmergencyTitle: "Emergencies", phonesEmergencyDesc: "112 covers police, fire, ambulance and civil protection across Spain — a single number for any emergency.", phone112Label: "Emergencies (all of Spain)",
       phonesCommunityTitle: "Community contacts", phonesCommunityDesc: "Insurance, on-call plumber, electrician, locksmith, property manager... whatever your community needs.",
       newContactBtn: "Add contact", contactLabelLabel: "What's it for?", contactLabelPlaceholder: "e.g. On-call plumber", contactPhoneLabel: "Phone", contactPhonePlaceholder: "e.g. 600 123 456",
       contactSubmit: "Save contact", contactsEmpty: "No contacts saved yet.",
@@ -162,7 +162,7 @@
       januaryMeeting: "Reunió — Gener 2024", januaryDate: "15 de gener de 2024",
       februaryMeeting: "Reunió — Febrer 2024", februaryDate: "10 de febrer de 2024", download: "Descarrega",
       phonesEyebrow: "Emergències", phonesTitle: "Telèfons d'interès", phonesSubtitle: "Números útils per a una emergència o una avaria a l'edifici.",
-      phonesEmergencyTitle: "Emergències", phone112Label: "Emergències (tot Espanya)", phone091Label: "Policia Nacional", phone062Label: "Guàrdia Civil", phone061Label: "Emergències sanitàries",
+      phonesEmergencyTitle: "Emergències", phonesEmergencyDesc: "El 112 cobreix policia, bombers, ambulàncies i protecció civil a tot Espanya — un únic número per a qualsevol emergència.", phone112Label: "Emergències (tot Espanya)",
       phonesCommunityTitle: "Contactes de la comunitat", phonesCommunityDesc: "Assegurança, lampista de guàrdia, electricista, manyà, administrador... els que la teva comunitat necessiti.",
       newContactBtn: "Afegeix contacte", contactLabelLabel: "Per a què serveix?", contactLabelPlaceholder: "p. ex. Lampista de guàrdia", contactPhoneLabel: "Telèfon", contactPhonePlaceholder: "p. ex. 600 123 456",
       contactSubmit: "Desa el contacte", contactsEmpty: "Encara no hi ha contactes desats.",
@@ -608,19 +608,60 @@
   }
 
   /* ---------- teléfonos de interés ---------- */
+  var CONTACT_ICONS = {
+    bolt: '<path d="M12.5 2 5 13h5.5L11 22l7.5-11H13z"/>',
+    drop: '<path d="M12 3c3.6 4.3 6.5 7.9 6.5 11.2a6.5 6.5 0 0 1-13 0C5.5 10.9 8.4 7.3 12 3z"/>',
+    flame: '<path d="M12 2.5c.6 2.8-1.8 4-1.8 6.8a2.8 2.8 0 0 0 5.6 0c0-.9-.4-1.7-.9-2.3.4 2.3-1 3.3-1.4 3.5 1-2.7-.6-4-1.1-6.4-1 1.1-2.1 2.4-2.1 4.4a3.8 3.8 0 0 0 .5 1.9A6 6 0 0 0 6 15.5a6 6 0 0 0 12 0c0-3.6-2.7-6.3-6-13z"/>',
+    key: '<circle cx="8" cy="15" r="4"/><path d="M11 12 19 4M16 6l2 2M13 9l2 2"/>',
+    shield: '<path d="M12 3l7 3v5.5c0 4.6-3 8.2-7 9.5-4-1.3-7-4.9-7-9.5V6z"/><path d="M9 12l2 2 4-4"/>',
+    phone: '<path d="M6.6 4.5h3.2l1.4 3.8-2 1.6a12.5 12.5 0 0 0 5.9 5.9l1.6-2 3.8 1.4v3.2a1.6 1.6 0 0 1-1.7 1.6C10.9 19.6 4.4 13.1 4 5.2a1.6 1.6 0 0 1 1.6-1.7Z"/>'
+  };
+  function iconKeyForContact(label) {
+    var l = label.toLowerCase();
+    if (l.indexOf('luz') !== -1 || l.indexOf('electr') !== -1) return 'bolt';
+    if (l.indexOf('agua') !== -1 || l.indexOf('fontan') !== -1) return 'drop';
+    if (l.indexOf('gas') !== -1) return 'flame';
+    if (l.indexOf('cerraj') !== -1 || l.indexOf('llave') !== -1) return 'key';
+    if (l.indexOf('seguro') !== -1 || l.indexOf('emergenc') !== -1 || l.indexOf('urgenc') !== -1) return 'shield';
+    return 'phone';
+  }
+
   function renderContacts() {
     var box = $('contactsList'); if (!box) return;
-    if (!state.contacts.length) { box.innerHTML = '<div class="card empty"><p>' + t('contactsEmpty') + '</p></div>'; return; }
+    if (!state.contacts.length) {
+      box.className = '';
+      box.innerHTML = '<div class="card empty"><p>' + t('contactsEmpty') + '</p></div>';
+      return;
+    }
+    box.className = 'phone-grid';
     box.innerHTML = state.contacts.map(function (c, idx) {
       var dial = c.phone.replace(/[^0-9+]/g, '');
-      return '<div class="contact-row"><div><div class="contact-label">' + escapeHtml(c.label) + '</div>'
-        + '<a href="tel:' + escapeHtml(dial) + '">' + escapeHtml(c.phone) + '</a></div>'
-        + '<button type="button" class="btn btn-danger-ghost" data-contact-idx="' + idx + '">' + t('delete') + '</button></div>';
+      var icon = CONTACT_ICONS[iconKeyForContact(c.label)];
+      return '<div class="card phone-card contact-tile">'
+        + '<div class="phone-card-top"><div class="tile-icon contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + icon + '</svg></div>'
+        + '<button type="button" class="contact-delete" data-contact-idx="' + idx + '" aria-label="' + t('delete') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'
+        + '<a class="phone-num contact-phone" href="tel:' + escapeHtml(dial) + '">' + escapeHtml(c.phone) + '</a>'
+        + '<div class="phone-label">' + escapeHtml(c.label) + '</div>'
+        + '</div>';
     }).join('');
+  }
+
+  function seedSampleContacts() {
+    if (state.contacts.length) return;
+    state.contacts = [
+      { label: 'Luz — electricista de guardia', phone: '600 111 222' },
+      { label: 'Agua — fontanero de guardia', phone: '600 222 333' },
+      { label: 'Gas — urgencias', phone: '600 333 444' },
+      { label: 'Cerrajero', phone: '600 444 555' },
+      { label: 'Seguro de la comunidad (urgencias 24h)', phone: '900 555 666' }
+    ];
+    save('contacts', state.contacts);
   }
 
   function initTelefonosPage() {
     var form = $('contactForm'); if (!form) return;
+
+    seedSampleContacts();
 
     $('toggleContactForm').addEventListener('click', function () { form.hidden = !form.hidden; });
 
